@@ -1,0 +1,10 @@
+body {
+    background: olive;
+}
+
+.checklist__task--remove {
+    display: block;
+    width: 200px;
+    height: 10px;
+    background-color: red;
+}

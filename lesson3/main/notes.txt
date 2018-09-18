@@ -1,0 +1,2 @@
+npm i -D webpack webpack-cli babel-core babel-loader@7 babel-preset-env babel-preset-react babel-preset-stage-0 css-loader extract-text-webpack-plugin@next html-webpack-plugin style-loader webpack-dev-server
+npm i --save classnames prop-types react react-dom

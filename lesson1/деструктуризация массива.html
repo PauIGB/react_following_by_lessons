@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let</title>
+    <style>
+        p {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <h1>Деструктуризация массива</h1>
+    <p>
+    Деструктуризация - это особый синтаксис присваивания, при котором можно присвоить массив или объект сразу нескольким переменным, разбив его на части
+       
+        Пример:        
+    let[a, b, c, ...d] = [1, 2, 3, 4, 5, 6, 7, 8]
+    output.innerHTML = a //1
+    output.innerHTML += `<br>${b}` //2
+    output.innerHTML += `<br>${a + b + c}` //6
+    output.innerHTML += `<br>${d}` //4,5,6,7,8
+        
+        Пример, все отсутствующие значения заменяются на underined (Одинаково для let и var, но let предпочтительней, т.к. такая запись характерна на ES6)
+    let[userName, userAge] = ['igor', 25]
+    let[userName2, userAge2] = ['igor']
+    console.log(userName, userAge); //igor 25
+    console.log(userName2, userAge2); //igor undefined
+    let[userName3, userAge3] = ['igor3', 25, 'mail@mail.com', '384.ru']
+    console.log(userName3, userAge3);//igor3 25
+    
+    Spread - получение необозначенных элементов. Выполняет разделение объекта на составляющие (присваивает каждой компоненте массива значение оператора z)
+       
+        Пример:
+    function f(x, y, z) {
+        console.log(x, y, z)
+    }
+    let z = [1, 2, 3]
+    f(...z) //1 2 3
+    
+        Пример еще spread:
+    let[userName4, userAge4, ...spread] = ['igor3', 25, 'mail@mail.com', '384.ru']
+    console.log(userName4, userAge4, spread)//igor3 25 (2) ["mail@mail.com", "384.ru"]
+       
+    Rest - Объединяет объекты массива в один
+       
+       Пример:
+    function f(x, y, z) {
+        console.log(x, y, z)
+    }
+    let z = [1, 2, 3]
+    f(...z) //1 2 3
+    
+    function x(...args) {
+        console.log(args)
+    }
+    x(4, 5, 6) //(3) [4, 5, 6]
+        
+
+    
+    </p>
+    <div id="output"></div>
+
+<script>
+    const output = document.querySelector('#output')
+    let[a, b, c, ...d] = [1, 2, 3, 4, 5, 6, 7, 8]
+    output.innerHTML = a //1
+    output.innerHTML += `<br>${b}` //2
+    output.innerHTML += `<br>${a + b + c}` //6
+    output.innerHTML += `<br>${d}` //4,5,6,7,8
+    
+    let[userName, userAge] = ['igor', 25]
+    let[userName2, userAge2] = ['igor']
+    console.log(userName, userAge); //igor 25
+    console.log(userName2, userAge2); //igor undefined
+    let[userName3, userAge3] = ['igor3', 25, 'mail@mail.com', '384.ru']
+    console.log(userName3, userAge3);
+    let[userName4, userAge4, ...spread] = ['igor3', 25, 'mail@mail.com', '384.ru']
+    console.log(userName4, userAge4, spread)
+
+    function f(x, y, z) {
+        console.log(x, y, z)
+    }
+    let z = [1, 2, 3]
+    f(...z) //1 2 3
+    
+    function x(...args) {
+        console.log(args)
+    }
+    x(4, 5, 6) //(3) [4, 5, 6]
+        
+</script>
+</body>
+</html>

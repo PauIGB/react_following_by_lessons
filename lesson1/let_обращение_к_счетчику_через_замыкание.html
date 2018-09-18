@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let</title>
+    <style>
+        p {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    
+    <h1>let vs var</h1>
+    <p>
+    переменная var при осуществлении цикла остается одной и той же.
+    В примере ниже показано, что в массиве функций var i в каждой функции равна 10, т.е. выводтся значение var, которое получилось после прохождения всего цикла
+       
+        Пример var переменная не создается каждый раз заново:
+    function arrayFunc() {
+        let func = []
+        for (var i = 0; i < 10; i++) {
+            func.push(function() {
+                console.log(i)
+            })
+        }
+        return func;
+    }
+    let myArray = arrayFunc()
+    myArray[0]() //10 вызов первой функции из массива 10 одинаковых функций, выводящих var i
+    myArray[5]() //10 вызов пятой функции из массива 10 одинаковых функций, выводящих var i
+    myArray[6]() //10 вызов шестой функции из массива 10 одинаковых функций, выводящих var i
+       
+    переменная let, в каждую итерацию цикла создается новая 
+                               
+        Пример var переменная не создается каждый раз заново:
+    function arrayFunc() {
+        let func = []
+        for (let i = 0; i < 10; i++) {
+            func.push(function() {
+                console.log(i)
+            })
+        }
+        return func;
+    }
+    let myArray = arrayFunc()
+    myArray[0]() //0 вызов первой функции из массива 10 одинаковых функций, выводящих let i, созданню при 0 итерации цикла
+    myArray[5]() //5 вызов пятой функции из массива 10 одинаковых функций, выводящих let i, созданню при 5 итерации цикла
+    myArray[6]() //6 вызов шестой функции из массива 10 одинаковых функций, выводящих let i, созданню при 6 итерации цикла
+       
+    </p>
+<script>
+//    function arrayFunc() {
+//        let func = []
+//        for (var i = 0; i < 10; i++) {
+//            func.push(function() {
+//                console.log(i)
+//            })
+//        }
+//        return func;
+//    }
+//    let myArray = arrayFunc()
+//    myArray[0]() 
+//    myArray[5]()
+//    myArray[6]()     
+    function arrayFunc() {
+        let func = []
+        for (let i = 0; i < 10; i++) {
+            func.push(function() {
+                console.log(i)
+            })
+        }
+        return func;
+    }
+    let myArray = arrayFunc()
+    myArray[0]() 
+    myArray[5]()
+    myArray[6]() 
+</script>
+</body>
+</html>

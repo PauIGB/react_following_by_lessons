@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>var, let, const</title>
+    <style>
+        p {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>const</h1>
+    <p>
+    const - хорошо работают со всеми типами данных, кроме объектов  
+        
+        Пример изменение значения const простого типа (сохраняет и имя и данные:
+    const model = 'Audi'
+        console.log(model) //Audi
+        model = 'BMW'
+        console.log(model) //Uncaught TypeError: Assignment to constant variable.
+        
+        Пример изменение значения const объекта(сохраняет только имя , но не данные:
+    const tel = {
+            model: 'iphone',
+            year: '2016'
+        }
+        tel = 'test'
+        console.log(tel)// Uncaught TypeError: Assignment to constant variable. - таким образом поменять данные нельзя
+        
+        зато можно изменить сам объект:
+        
+        tel.model = 'samsung'
+        delete(tel.year)
+        console.log(tel) //{model: "samsung"}
+        
+        
+     
+    </p>
+    <script>
+//        const model = 'Audi'
+//        console.log(model)
+//        model = 'BMW'
+//        console.log(model)
+        const tel = {
+            model: 'iphone',
+            year: '2016'
+        }
+//        tel = 'test'
+//        console.log(tel)
+        tel.model = 'samsung'
+        delete(tel.year)
+        console.log(tel)
+
+        
+    </script>
+</body>
+</html>

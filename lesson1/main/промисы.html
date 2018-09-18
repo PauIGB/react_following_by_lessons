@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Промисы</title>
+</head>
+<body>
+<script>
+setTimeout(() => console.log('hello'), 1000)    
+    
+const promise = new Promise((resolve, reject) => {
+
+    setTimeout(() => {resolve({name: 'Vasya'})}, 1000)  
+})
+
+promise.then(
+    (human) => {
+        const promise = new Promise((resolve, reject) => {
+            setTimeout(() => {resolve({...human, age: 50})}, 1000)
+        })
+        return promise
+        console.log(human)
+    },
+    () =>{}
+)
+    .then(
+    (enrichedHuman) => {
+        console.log(enrichedHuman)
+    }
+)
+</script>
+    
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>var, let, const</title>
+    <style>
+        p {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <p>
+    var - глобальная область видимости, сканируется до выполнения первой строчки кода
+    let,const - не могут быть вызваны раньше, чем переменной присвоено значение, создаются непосредственно при выполнении кода
+       видимость только внутри блока и недоступность за его пределами
+        
+        Пример let, const:
+    console.log(a) //будет вызвана ошибка: Uncaught ReferenceError: a is not defined
+    let a = 'test'  
+        
+        Пример var:
+    console.log(b) // undefined (ошибки не будет)
+    var b = 'test'  
+        
+        Пример видимость переменных за пределами блока:
+    {
+        var c = 'test c'
+        const d = 'test d'
+    }
+    console.log(c) //test c
+    console.log(d) //Uncaught ReferenceError: d is not defined    
+           
+        Пример видимость переменных за пределами блока:
+    for(var i = 0; i < 1; i++) {
+        console.log(i) // 0
+    }
+    console.log('i: ' + i) // i: 1 - к i есть доступ и за пределами цикла
+       
+    for(let i = 0; i < 1; i++) { // при использовании let, на каждую итерацию цикла создается своя переменная 
+        console.log(i) // 0
+    }
+    console.log('i: ' + i) // Uncaught ReferenceError: i is not defined - к i доступа за пределами цикла нет
+    </p>
+    <script>
+//        console.log(a)
+//        let a = 'test' 
+        console.log(b)
+        var b = 'test' 
+        
+        {var c = 'test c'
+         const d = 'test d'}
+        
+        console.log(c)
+//        console.log(d)
+        
+//        for(var i = 0; i < 1; i++) {
+//        console.log(i)
+//        }
+//        console.log('i: ' + i)         
+        
+        for(let i = 0; i < 1; i++) {
+        console.log(i)
+        }
+        console.log('i: ' + i) 
+    </script>
+</body>
+</html>

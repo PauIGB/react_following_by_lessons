@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>object freez</title>
+</head>
+<body>
+    <script>
+    const obj = {
+        name: 'aaa',
+        age: 22,
+    }
+    obj.sex = 'male'
+    console.log(obj)//{name: "aaa", age: 22, sex: "male"}
+    delete obj.age 
+    console.log(obj) //{name: "aaa", sex: "male"}
+        
+    Object.freeze(obj)
+    obj.age = 22 
+     delete obj.name    
+    console.log(obj)//{name: "aaa", sex: "male"}  -- нельзя добавить и удалить свойство
+    
+    </script>
+</body>
+
+</html>

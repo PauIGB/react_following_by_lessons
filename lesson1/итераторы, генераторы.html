@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Итераторы и Генераторы</title>
+</head>
+<body>
+<script>
+//    нельзя пройти циклом по объекту
+//    for (const v of {a: 1, b: 2}) {
+//        console.log(v) // is not itterable
+//    }
+//    создаем iterable object
+//    const obj = makeIterator();
+////    for (const v of obj) {
+////        console.log(v)
+////    }
+//const obj = {
+//  collection: ['yo', 'ya'],
+//  [Symbol.iterator]: makeIterator,
+//};
+//
+//for (const v of obj) {
+//  console.log(v);
+//}
+//    
+//const makeIterator = coll => {
+//  let nextIndex = 0;
+//
+//  const next = () => {
+//    if (nextIndex < coll.length) {
+//      const value = coll[nextIndex++];
+//      return { value, done: false };
+//    }
+//    return { done: true };
+//  };
+//  return { next };
+//}
+//const it = makeIterator(['yo', 'ya']);
+//console.log(it.next()); // { value: 'yo', done: false }
+//console.log(it.next()); // { value: 'ya', done: false }
+//console.log(it.next()); // { done: true }
+//    const makeIterator = function* (coll) {
+//        for (const value of coll) {
+//            yield value;
+//        }
+//    }
+//    const it = makeIterator(['yo', 'ya'])
+//console.log(it.next()); // { value: 'yo', done: false }
+//console.log(it.next()); // { value: 'ya', done: false }
+//console.log(it.next()); // {value: undefined, done: true}
+//    const gen = function* () {
+//        yield 1
+//        yield 2
+//        yield 3
+//        
+//    }
+//    const it = gen()
+//console.log(it.next()); // { value: 1, done: false }
+//console.log(it.next()); // { value: 1, done: false }
+//console.log(it.next()); // { value: 1, done: false }
+//console.log(it.next()); // {value: undefined, done: true}
+    const obj = {}
+    const gen = function* () {
+        
+        yield obj.name = prompt("Ваше имя")
+        yield obj.age = prompt("Ваш возраст")
+        yield obj.sex = prompt("Ваш пол")
+        yield obj.prof = prompt("Ваша профессия") 
+        yield console.log(obj)
+    }
+    const it = gen()
+    it.next()
+    it.next()
+    it.next()
+    it.next()
+    it.next()
+//    while(it.next().done === false) {
+//        console.log(it.next())
+//    }
+//    [...it]
+    
+    
+//console.log(it.next()); // { value: 1, done: false }
+//console.log(it.next()); // { value: 1, done: false }
+//console.log(it.next()); // { value: 1, done: false }
+//console.log(it.next()); // {value: undefined, done: true}
+ </script>   
+</body>
+</html>

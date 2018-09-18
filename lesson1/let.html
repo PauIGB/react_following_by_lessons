@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let</title>
+    <style>
+        p {
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+<body>
+    <h1>let, области видимости</h1>
+    <p>
+    Если блоки раположены внутри друг друга, то переменные let из блока, иерархия которого выше, могут использовать во вложенных блоках, но переменных из вложенных блоков не могут использваться в блоках, с более высокой иерархией
+    const output = document.querySelector('#output')
+    output.style.border = '1px solid black'
+    //общая область видимости
+    let a = 2
+    //область видимости ветки if (в данную область видимости попадает let a)
+    if (a > 1) {
+        let b = a * 3
+        output.innerHTML = b //6 (let a попадает в область видимости ветки if, т.к. if и let a принадлежат одному блоку)
+        //область видимости цикла for, который находстя внутри if, в данную область попадают let a и let b т.к. находятся выше в иерархии областей видимости
+        for (let i = a; i <= b; i++) {
+            let j = i + 10;
+            output.innerHTML += `<br>${j}`; //12, 13, 14, 15, 16 
+        }
+        output.innerHTML += `<br>${c}` // undefined - переменная еще не была инициализирована
+        var c = a + b 
+        output.innerHTML += `<br>${c}` // 8 - переменная уже инициализирована
+        output.innerHTML += `<br>${j}` //Uncaught ReferenceError: j is not defined - j не находтся в области видимости if
+    }
+    </p>
+    <div id="output"></div>
+<script>
+    const output = document.querySelector('#output')
+    output.style.border = '1px solid black'
+    //общая область видимости
+    let a = 2
+    //область видимости ветки if (в данную область видимости попадает let a)
+    if (a > 1) {
+        let b = a * 3
+        output.innerHTML = b //6 (let a попадает в область видимости ветки if, т.к. if и let a принадлежат одному блоку)
+        //область видимости цикла for, который находстя внутри if, в данную область попадают let a и let b т.к. находятся выше в иерархии областей видимости
+        for (let i = a; i <= b; i++) {
+            let j = i + 10;
+            output.innerHTML += `<br>${j}`; //12, 13, 14, 15, 16 
+        }
+        output.innerHTML += `<br>${c}` // undefined - переменная еще не была инициализирована
+        var c = a + b 
+        output.innerHTML += `<br>${c}` // 8 - переменная уже инициализирована
+        output.innerHTML += `<br>${j}` //Uncaught ReferenceError: j is not defined - j не находтся в области видимости if
+    }
+</script>
+</body>
+</html>

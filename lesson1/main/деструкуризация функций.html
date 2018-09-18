@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const human = {
+            age: 45,
+            dob: '1966-01-01',
+            firstName: "Luke",
+            lastName: "Veider"
+        }
+    //1й способ
+
+        function getFullName(human) {
+            return `Hello, ${human.firstName} ${human.lastName}`
+        }
+    //2й способ. Значение имени по умолчанию: Вася, значение передаваемых параметров по умолчанию пустой объект
+        function getFullName2({firstName = 'Вася', lastName} = {}) {
+            return `Hello, ${firstName} ${lastName}`
+        }
+        console.log(getFullName(human))//Hello, Luke Veider
+        console.log(getFullName2(human))//Hello, Luke Veider
+    </script>
+</body>
+</html>

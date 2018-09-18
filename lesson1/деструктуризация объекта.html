@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>let</title>
+    <style>
+        p {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+    <h1>Деструктуризация объекта</h1>
+    <p>
+    Деструктуризация - это особый синтаксис присваивания, при котором можно присвоить массив или объект сразу нескольким переменным, разбив его на части
+       
+        Пример:        
+    let options = {
+        width: 200,
+        height: 300,
+        style: {
+            background: 'green'
+        },
+        items: [
+            '1', '2', '3'
+        ]
+    }
+    console.log(options){width: 200, height: 300, style: {…}, items: Array(3)}
+       
+        Пример несовпадение ключей:  
+    Ключи объекта должный совпадать, вместо несовпадающих ключей будет undefined
+    let{width5, height} = options
+    console.log(width5, height)//undefined 300
+              
+        Пример присваивание другого названия ключу:  
+    let{width: w, height: h} = options
+    console.log(w, h)//200 300
+       
+        Пример задание значения по умолчанию(на случай, если в объекте данный ключ будет отсутствовать):  
+    let{width: a = 'Не задано значение', height: b} = options
+    console.log(a, b) //200 300 
+
+    let{width5: a = 'Не задано значение', height: b} = options
+    console.log(a, b) //Не задано значение 300
+    
+        Пример деструктуризация вложенного массива:
+
+    let{width: d = 'Не задано значение', height: c, items} = options
+    console.log(d, c, items)// 200 300 (3) ["1", "2", "3"]
+
+    let{width: e = 'Не задано значение', height: f, items: [item1, item2, item3]} = options
+    console.log(e, f, item1, item2, item3) //200 300 "1" "2" "3"
+                
+    В данном случае переменной items создано не будет, items использутся как ключь
+    let{width: e = 'Не задано значение', height: f, items: [item1, item2, item3]} = options
+    console.log(e, f, item1, item2, item3) //Uncaught ReferenceError: items is not defined
+        
+        
+        Пример деструктуризация вложенного объекта:
+        let {
+        width: e = 'Не задано значение', 
+        height: f, 
+        items: [item1, item2, item3]},
+        style {
+            background
+            }
+        } = options
+        console.log(e, f, item1, item2, item3, background) //200 300 "1" "2" "3" "green"
+        
+    
+    </p>
+    <div id="output"></div>
+<script>
+    let options = {
+        width: 200,
+        height: 300,
+        style: {
+            background: 'green'
+        },
+        items: [
+            '1', '2', '3'
+        ]
+    }
+    console.log(options)
+    
+//    let{width5, height} = options
+//    console.log(width5, height)
+//
+//    let{width: w, height: h} = options
+//    console.log(w, h)
+//    
+//    let{width5: a = 'Не задано значение', height: b} = options
+//    console.log(a, b)
+//    
+//    let{width: d = 'Не задано значение', height: c, items} = options
+//    console.log(d, c, items)// 200 300 (3) ["1", "2", "3"]
+//    
+//    let{width: e = 'Не задано значение', height: f, items: [item1, item2, item3]} = options
+//    console.log(e, f, item1, item2, item3) //200 300 "1" "2" "3"
+//    
+//    let{width: g = 'Не задано значение', height: j, items1: [itemm1, itemm2, itemm3]} = options
+//    console.log(e, j, items1) //200 300 "1" "2" "3"
+//        
+    let {
+        width: e = 'Не задано значение', 
+        height: f, 
+        items: [item1, item2, item3],
+        style: {
+            background
+            }
+        } = options
+    console.log(e, f, item1, item2, item3, background)
+    
+</script>
+</body>
+</html>
