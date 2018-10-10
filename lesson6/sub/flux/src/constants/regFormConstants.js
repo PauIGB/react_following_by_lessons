@@ -1,3 +1,2 @@
 export const EM_CLICK_LINK = 'EM_CLICK_LINK';
-export const FETCH_REQ = 'FETCH_REQ';
-export const COMPONENT_STATE_UPD = 'COMPONENT_STATE_UPD';
+export const FORM_UPD = 'FORM_UPD';

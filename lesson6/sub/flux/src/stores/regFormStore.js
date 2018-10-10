@@ -2,7 +2,7 @@ import { EventEmitter } from 'events';
 import { 
     EM_CLICK_LINK,
     FETCH_REQ,
-    COMPONENT_STATE_UPD,
+    FORM_UPD,
 } from 'constants/regFormConstants';
 
 import dispatcher from '../dispatcher';
@@ -21,17 +21,20 @@ class regFormStore extends EventEmitter {
         link.click();
     }
 
-    fetchReq = (attr) => {
-        const {url, method, text} = attr;
-        const BASE_URL = 'http://localhost:3001';
-        fetch(`${BASE_URL}/${url}`, {
-            method: method,
-            body: JSON.stringify(text) || null,
-            headers: {
-                "Content-type": "application/json; charset=UTF-8"
-            }
-        }) 
-    }
+    // fetchReq = (attr) => {
+    //     const {url, method, text, addData} = attr;
+    //     const BASE_URL = 'http://localhost:3001';
+    //     fetch(`${BASE_URL}/${url}`, {
+    //         method: method,
+    //         body: JSON.stringify(text) || null,
+    //         headers: {
+    //             "Content-type": "application/json; charset=UTF-8"
+    //         }
+    //     })
+    //     .then(response => response.json())
+    //     .then(addData) 
+
+    // }
 
     onChangeUpdater = (event) => {
         this.data[event.target.name] = event.target.value;
@@ -42,7 +45,7 @@ class regFormStore extends EventEmitter {
         this.change();
     }    
 
-    componentStateUpd = (event) => {
+    formUpd = (event) => {
         this.onChangeUpdater(event);
         this.disBtn(event);
         this.change();
@@ -62,8 +65,8 @@ class regFormStore extends EventEmitter {
                 this.fetchReq(action.payload);
                 break;
             }
-            case COMPONENT_STATE_UPD:{
-                this.componentStateUpd(action.payload);
+            case FORM_UPD:{
+                this.formUpd(action.payload);
                 break;
             }            
             default:
@@ -72,6 +75,6 @@ class regFormStore extends EventEmitter {
     }
 }
 
-const cRF = new regFormStore;
-dispatcher.register(cRF.handleActions);
-export default cRF;
+const rFS = new regFormStore;
+dispatcher.register(rFS.handleActions);
+export default rFS;

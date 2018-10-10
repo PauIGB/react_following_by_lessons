@@ -5,6 +5,9 @@ import PropTypes from 'prop-types';
 
 import MessageItem from 'components/MessageItem';
 
+import messageItemStore from 'stores/messageItemStore';
+import { autoScroll } from '../actions/messageItemActions';
+
 export default class MessageItemContainer extends PureComponent {
     static propTypes = {
         type: PropTypes.oneOf(['guest', 'me']),        
@@ -15,11 +18,12 @@ export default class MessageItemContainer extends PureComponent {
     };  
 
     componentDidMount() {
-        const commArea = document.querySelector('.comment-area');
-        commArea.scrollTo({
-            top: commArea.scrollHeight,
-            behavior: 'smooth'
-        })
+        autoScroll();
+        // const commArea = document.querySelector('.comment-area');
+        // commArea.scrollTo({
+        //     top: commArea.scrollHeight,
+        //     behavior: 'smooth'
+        // })
     } 
 
     render() { 

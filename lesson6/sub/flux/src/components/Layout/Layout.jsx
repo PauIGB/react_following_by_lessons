@@ -10,12 +10,13 @@ import CommentsContainer from 'containers/CommentsContainer';
 
 export default class Layout extends Component {
     render() {  
-        const { onGetApi, res } = this.props;         
+        // const { onGetApi, res } = this.props;         
         return (
         <div className="wrapper">
             <Switch>
-                <Route path='/' render={() => (<RegistrationForm onGetApi={onGetApi} /> )} exact />
-                <Route path='/chat' render={() => <Chat onGetApi={onGetApi} res={res} exact />} />
+                <Route path='/' component={RegistrationForm} exact />
+                {/* <Route path='/chat' component={Chat} exact />} /> */}
+                <Route path='/chat' render={() => <Chat exact />} />
                 <Route path='/comments' component={CommentsContainer} />
             </Switch>
         </div>

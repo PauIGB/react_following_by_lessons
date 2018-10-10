@@ -14,6 +14,7 @@ class CommentsStore extends EventEmitter {
     constructor(props) {
         super(props);
         this.comments = [1, 2, 3];
+        this.loading = false;
     }
 
     //функция 1. получает данные с сервера
@@ -22,6 +23,7 @@ class CommentsStore extends EventEmitter {
  //отрабатывает ф-ция fetchCommentsEnd, где в качестве аргумента предается action.paylod, в котором находится полученный json
 
     fetchCommentsStart = () => {        
+        this.loading = true;
         fetch('https://jsonplaceholder.typicode.com/posts')
         .then(response => response.json())       
         .then(json => {        
@@ -30,6 +32,7 @@ class CommentsStore extends EventEmitter {
                 payload: json,
             })
         })
+        // .then(json => this.loading = false)
         //использование axios помогает скоращать код на одну строку(не надо парсить json)+легче отлавливать ошибки
         // axios
         // .get('http://jsonplaceholder.typicode.com/posts')
@@ -47,6 +50,8 @@ class CommentsStore extends EventEmitter {
         this.comments = comments; // свойству this.comments передается занчение comments, все, что было до этого, стирается
         this.change(); //вызывается node метод emit, относящийся к Events,без вызова emit не отработает on
         // this.emit('test', this.comments);
+        this.loading = false;
+        console.log(this.loading)
     }
 
     //функция change позволяет передать on.('change') текущее состояние this.state

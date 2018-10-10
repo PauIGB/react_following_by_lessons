@@ -1,8 +1,8 @@
 import dispatcher from '../dispatcher';
 import { 
     EM_CLICK_LINK,
-    FETCH_REQ,
-    COMPONENT_STATE_UPD,
+    // FETCH_REQ,
+    FORM_UPD,
  } from 'constants/regFormConstants';
 
 export const emClickLink = () => {
@@ -11,17 +11,17 @@ export const emClickLink = () => {
     })
 };
 
-export const fetchReq = ({url, method='GET', text}) => {
-    const attr = { url, method, text };
-    dispatcher.dispatch({
-        type: FETCH_REQ,
-        payload: attr,
-    })
-};
+// export const fetchReq = ({url, method='GET', text, addData=null}) => {
+//     const attr = { url, method, text, addData };
+//     dispatcher.dispatch({
+//         type: FETCH_REQ,
+//         payload: attr,
+//     })
+// };
 
-export const componentStateUpd = (event) => {    
+export const formUpd = (event) => {    
     dispatcher.dispatch({
-        type: COMPONENT_STATE_UPD,
+        type: FORM_UPD,
         payload: event,
     })
 };

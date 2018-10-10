@@ -40,7 +40,9 @@ export default class CommentsContainer extends PureComponent {
 
     componentDidMount() {
             // componentDidMount происходит после render компонента
-        console.log('componentDidMount')
+        console.log('componentDidMount');
+        console.log(CommentsStore)
+        
         
         //с помощью fetchComments инициализируется соответствующий action
         // вызывается метод fetchComments, который:

@@ -2,6 +2,8 @@ import React, { PureComponent, Fragment } from 'react';
 
 import CommentArea from 'containers/CommentAreaContainer';
 import CommentForm from 'containers/CommentFormContainer';
+import generalStore from 'stores/generalStore';
+import { fetchReqGen } from 'actions/generalActions';
 
 export default class StartDialogContainer extends PureComponent {
    constructor(props) {
@@ -12,12 +14,14 @@ export default class StartDialogContainer extends PureComponent {
         }
     } 
 
-    componentDidMount() {
-        const { match } = this.props;
-        this.getApi(match.params.id);        
-    } 
+    // componentDidMount() {
+    //     console.log(this.props)
+    //     const { match } = this.props;
+    //     this.getApi(match.params.id);        
+    // } 
 
     componentDidUpdate(prevProps) {
+        generalStore.removeListener('fetchGen', this.stateUpdater);
         const {
           match: {
             params: { id }
@@ -30,23 +34,40 @@ export default class StartDialogContainer extends PureComponent {
       }
 
       getApi = (id) => {
-        fetch(`http://localhost:3001/posts/${id}/comments`)
-        .then(response => response.json())
-        .then(json => 
-            this.setState(
-            { 
-                comments: json,
+        const url = `posts/${id}/comments`
+        fetchReqGen({url});
+        generalStore.on('fetchGen', this.stateUpdater);
+        // fetch(`http://localhost:3001/posts/${id}/comments`)
+        // .then(response => response.json())
+        // .then(json => 
+        //     this.setState(
+        //     { 
+        //         comments: json,
+        //         id,
+        //     })
+        // )   
+    }
+    stateUpdater = (data) => {
+        const {
+            match: {
+              params: { id }
+            }
+          } = this.props;
+        console.log(data)
+        this.setState({
+            comments: data,
                 id,
-            })
-        )   
+        })
     }
 
     render() {   
         const { comments, id } = this.state;    
         return ( 
             <Fragment>
-                <CommentArea comments={comments} />  
-                <CommentForm id={id} onGetApi={this.getApi} />  
+                {/* <CommentArea comments={comments} />   */}
+                <CommentArea />
+                {/* <CommentForm id={id} onGetApi={this.getApi} />   */}
+                <CommentForm />
             </Fragment>    
         );
     }

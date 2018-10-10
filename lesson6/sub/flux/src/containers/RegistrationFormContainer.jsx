@@ -3,7 +3,9 @@ import React, { PureComponent } from 'react';
 import RegistrationForm from 'components/RegistrationForm';
 
 import regFormStore from 'stores/regFormStore';
-import { emClickLink, fetchReq, disBtn, componentStateUpd } from 'actions/regFormActions';
+import generalStore from 'stores/generalStore';
+import { emClickLink, fetchReq, disBtn, formUpd } from 'actions/regFormActions';
+import { fetchReqGen } from 'actions/generalActions';
 
 export default class RegistrationFormContainer extends PureComponent {
     constructor(props) {
@@ -15,10 +17,10 @@ export default class RegistrationFormContainer extends PureComponent {
     }
 
     componentDidMount() {
-        regFormStore.on('change', this.stateCorrector);
+        regFormStore.on('change', this.stateUpdater);
     }
 
-    stateCorrector = (data) => {
+    stateUpdater = (data) => {
 
         this.setState(data)
         // this.setState({
@@ -28,18 +30,27 @@ export default class RegistrationFormContainer extends PureComponent {
     }
 
     handleChange = (event) => {
-        componentStateUpd(event)   
+        formUpd(event);   
     }
+
+
     
-    reg = (event) => {        
-        emClickLink();         
+    reg = (event) => {       
         const { name_reg } = this.state;           
         let url = 'profile';
         let method = 'POST';
         let text = {"name": name_reg};
-      
-        fetchReq({url, method, text}); 
+
+        // fetchReq({url, method, text}); 
+
+        fetchReqGen({url, method, text })
+        emClickLink()
+        // fetchReq({url, method, text, addData}); 
         event.preventDefault();  
+    }
+
+    componentWillUnmount() {
+        regFormStore.removeListener('change', this.stateUpdater);       
     }
 
     render() {  

@@ -1,27 +1,26 @@
 import dispatcher from '../dispatcher';
 import { 
-    EM_CLICK_LINK,
-    FETCH_REQ,
-    COMPONENT_STATE_UPD,
- } from 'constants/regFormConstants';
+    FETCH_REQ_GEN,
+    CHECKER_GEN,
+    CHANGE,
+ } from '../constants/generalConstants';
 
-export const emClickLink = () => {
+export const fetchReqGen = ({url, method='GET', text=undefined, event='fetchGen', advFeatures}) => {
+    const attr = { url, method, text, event, advFeatures };
     dispatcher.dispatch({
-        type: EM_CLICK_LINK,   
-    })
-};
-
-export const fetchReq = ({url, method='GET', text}) => {
-    const attr = { url, method, text };
-    dispatcher.dispatch({
-        type: FETCH_REQ,
+        type: FETCH_REQ_GEN,
         payload: attr,
     })
 };
 
-export const componentStateUpd = (event) => {    
-    dispatcher.dispatch({
-        type: COMPONENT_STATE_UPD,
-        payload: event,
+export const checkerGen = () => {
+       dispatcher.dispatch({
+        type: CHECKER_GEN,
     })
+};
+
+export const change = () => {
+    dispatcher.dispatch({
+     type: CHANGE,
+ })
 };
